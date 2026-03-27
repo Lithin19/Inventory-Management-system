@@ -2,6 +2,7 @@ package com.demo.spring.controller;
 
 import com.demo.spring.Entity.Product;
 import com.demo.spring.service.ProductService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,26 +19,26 @@ public class ProductController {
     }
 
     //  Add product
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Product addProduct(@RequestBody Product product) {
         return service.addProduct(product);
     }
 
     //  View inventory (all products)
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Product> getAll() {
         return service.getAllProducts();
     }
 
     //get a product by id
-    @GetMapping("/{id}")
+    @GetMapping(path="/{id}")
     public Product getById(@PathVariable Integer id) {
         return service.getProductById(id);
     }
 
 
     // Update stock
-    @PutMapping("/{id}/stock")
+    @PutMapping(path="/{id}/stock",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Product updateStock(@PathVariable Integer id, @RequestParam Integer quantity) {
         return service.updateStock(id, quantity);
     }
