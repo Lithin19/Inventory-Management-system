@@ -37,6 +37,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product getProductById(Integer id) {
+        return repo.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Product not found with id " + id));
+    }
+
+    @Override
     public Product updateStock(Integer id, Integer quantity) {
 
         if (quantity < 0) {

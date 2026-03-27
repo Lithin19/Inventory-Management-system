@@ -29,6 +29,13 @@ public class ProductController {
         return service.getAllProducts();
     }
 
+    //get a product by id
+    @GetMapping("/{id}")
+    public Product getById(@PathVariable Integer id) {
+        return service.getProductById(id);
+    }
+
+
     // Update stock
     @PutMapping("/{id}/stock")
     public Product updateStock(@PathVariable Integer id, @RequestParam Integer quantity) {

@@ -8,6 +8,7 @@ import java.util.List;
 public interface ProductService {
     Product addProduct(Product product);
     List<Product> getAllProducts();
+    Product getProductById(Integer id);
     Product updateStock(Integer id, Integer quantity);
     void deleteProduct(Integer id);
     List<Product> getLowStockProducts(Integer threshold);
