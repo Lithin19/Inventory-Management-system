@@ -20,7 +20,7 @@ public class Product{
     private String category;
 
     @Column
-    private BigDecimal price;
+    private Double price;
 
     @Column
     private Integer quantity;
@@ -31,8 +31,8 @@ public class Product{
     public Product() {
     }
 
-    public Product(Integer id, String name, String category, BigDecimal price, Integer quantity, Timestamp createdAt) {
-        this.id = id;
+    public Product(String name, String category, Double price, Integer quantity, Timestamp createdAt) {
+
         this.name = name;
         this.category = category;
         this.price = price;
@@ -64,11 +64,11 @@ public class Product{
         this.category = category;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
