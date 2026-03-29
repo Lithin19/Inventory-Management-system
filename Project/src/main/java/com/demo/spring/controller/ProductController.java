@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-@CrossOrigin(origins = "http://localhost:")
+@CrossOrigin
 public class ProductController {
 
     private final ProductService service;
@@ -38,7 +38,7 @@ public class ProductController {
 
 
     // Update stock
-    @PutMapping(path="/{id}/stock",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path="/{id}/stock",produces = MediaType.APPLICATION_JSON_VALUE)
     public Product updateStock(@PathVariable Integer id, @RequestParam Integer quantity) {
         return service.updateStock(id, quantity);
     }
