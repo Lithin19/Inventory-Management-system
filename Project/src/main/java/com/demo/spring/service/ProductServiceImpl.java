@@ -13,6 +13,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository repo;
 
+    String s="Product not found with id";
     public ProductServiceImpl(ProductRepository repo) {
         this.repo = repo;
     }
@@ -40,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
     public Product getProductById(Integer id) {
         return repo.findById(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Product not found with id " + id));
+                        new ResourceNotFoundException("s" + id));
     }
 
     @Override
@@ -52,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
 
         Product product = repo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Product not found with id " + id));
+                        "s " + id));
 
         product.setQuantity(quantity);
         return repo.save(product);
@@ -63,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
 
         Product product = repo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Product not found with id " + id));
+                        "s" + id));
 
         repo.delete(product);
     }

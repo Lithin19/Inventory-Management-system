@@ -2,7 +2,7 @@ package com.demo.spring.Entity;
 
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
+
 import java.sql.Timestamp;
 
 @Entity

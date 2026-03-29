@@ -162,19 +162,7 @@ class ProductApplicationTests {
     // PUT /products/{id}/stock?quantity=  (updateStock)
     // =========================================================
 
-//    @Test
-//    void testUpdateStockSuccess() throws Exception {
-//        Product updated = productWithCommonFields(2, "Mobile Phone", "Electronics", 20000.0, 25);
-//
-//        when(productService.updateStock(2, 25)).thenReturn(updated);
-//
-//        mvc.perform(put("/products/2/stock")
-//                        .param("quantity", "25"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-//
-//        verify(productService, times(2)).updateStock(2, 25);
-//    }
+
 
     @Test
     void testUpdateStockServiceThrowsException_5xx() throws Exception {
