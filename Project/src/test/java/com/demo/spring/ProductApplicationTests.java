@@ -48,7 +48,8 @@ class ProductApplicationTests {
                                 }
                                 """))
                 .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+                .andExpect(content()
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
 
         verify(productService, times(1)).addProduct(any(Product.class));
     }
@@ -69,6 +70,7 @@ class ProductApplicationTests {
 
 
     @Test
+
     void testAddProductServiceThrowsException_5xx() throws Exception {
         when(productService.addProduct(any(Product.class))).thenThrow(new RuntimeException("DB down"));
 
@@ -108,6 +110,8 @@ class ProductApplicationTests {
     }
 
     @Test
+
+    //“This test ensures the GET /products API returns 200 OK and an empty JSON array when no products are available.”
     void testGetAllProductsEmptyListSuccess() throws Exception {
         when(productService.getAllProducts()).thenReturn(new ArrayList<>());
 
@@ -120,6 +124,8 @@ class ProductApplicationTests {
     }
 
     @Test
+    //“This test verifies that when the service layer throws an exception while fetching products, the controller correctly returns a 5xx server error response.”
+
     void testGetAllProductsServiceThrowsException_5xx() throws Exception {
         when(productService.getAllProducts()).thenThrow(new RuntimeException("failure"));
 
@@ -134,6 +140,7 @@ class ProductApplicationTests {
     // =========================================================
 
     @Test
+    //“testGetProductByIdSuccess verifies that when a valid product ID is provided, the controller successfully returns the product with HTTP 200 OK and JSON response, while correctly invoking the service layer.”
     void testGetProductByIdSuccess() throws Exception {
         Product p = productWithCommonFields(1, "Laptop", "Electronics", 55000.0, 10);
 
@@ -149,6 +156,7 @@ class ProductApplicationTests {
 
 
     @Test
+    //“This test verifies that when the service layer throws an exception while fetching a product by ID, the controller correctly returns a 5xx server error response.”
     void testGetProductByIdServiceThrowsException_5xx() throws Exception {
         when(productService.getProductById(1)).thenThrow(new RuntimeException("not found"));
 
@@ -165,6 +173,8 @@ class ProductApplicationTests {
 
 
     @Test
+    //“This test verifies that when the service layer fails while updating a product’s stock, the controller correctly responds with a 5xx server error.”
+
     void testUpdateStockServiceThrowsException_5xx() throws Exception {
         when(productService.updateStock(3, 10)).thenThrow(new RuntimeException("error"));
 
@@ -180,6 +190,8 @@ class ProductApplicationTests {
     // =========================================================
 
     @Test
+    //“This controller test verifies that DELETE /products/2 successfully calls the service’s deleteProduct(2) method, returns HTTP 200 OK, and responds with the expected confirmation message.”
+    //“When the controller calls productService.deleteProduct(2), do nothing (don’t throw any exception).”
     void testDeleteProductSuccess() throws Exception {
         doNothing().when(productService).deleteProduct(2);
 
@@ -193,6 +205,8 @@ class ProductApplicationTests {
 
 
     @Test
+    //“This test verifies that when the service layer throws an exception during product deletion, the controller correctly responds with a 5xx server error.”
+
     void testDeleteProductServiceThrowsException_5xx() throws Exception {
         doThrow(new RuntimeException("delete failed")).when(productService).deleteProduct(1);
 
@@ -207,6 +221,7 @@ class ProductApplicationTests {
     // =========================================================
 
     @Test
+    //“This test verifies that the low‑stock products API correctly returns products whose stock is below the given threshold, responding with HTTP 200 OK and the expected JSON result.”
     void testLowStockWithThresholdSuccess() throws Exception {
         List<Product> low = new ArrayList<>();
         low.add(productWithCommonFields(2, "Mouse", "Electronics", 500.0, 3));
@@ -223,6 +238,8 @@ class ProductApplicationTests {
     }
 
     @Test
+
+    //“This test verifies that the low‑stock products endpoint works correctly even when the optional threshold parameter is not provided, returning a successful response with the expected data.”
     void testLowStockWithoutThresholdSuccess() throws Exception {
         List<Product> low = new ArrayList<>();
         low.add(productWithCommonFields(3, "Keyboard", "Electronics", 1500.0, 2));
