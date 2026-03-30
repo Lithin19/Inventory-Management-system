@@ -5,8 +5,8 @@ function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">
-          WareSync
+        <NavLink className="navbar-brand " to="/">
+          <h3 className="text-bold">🛒WareSync🛒</h3>
         </NavLink>
 
         <button
